@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "botbuilder": "^3.11.0",
+    "dot-env": "0.0.1",
+    "restify": "^6.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
