@@ -21,9 +21,6 @@ categories = {
       "Change account information",
       "Set vacation dates",
       "Relocation service"
-    ],
-    "Other" : [
-      "Other"
     ]
   };
 
@@ -32,24 +29,25 @@ module.exports = (bot) => {
     bot.dialog('/createTicket', [
         
         (session) => {
-            builder.Prompts.text(session,'Cool! Let us start creating ticket. Please enter a category');
+            session.send('Cool! Let us start creating ticket.');
+            session.sendTyping();
+            session.beginDialog('/askForCategory');
         },
-    
         (session,results,next) => {
             session.dialogData.category  = results.response.toString().toLowerCase();
-            builder.Prompts.text(session,"Okay! lets drill down...What is the subcategory?");
+            session.beginDialog('askForSubCategory');
         },
         (session, results, next) => {
             session.dialogData.subCategory = results.response.toString().toLowerCase();
-            builder.Prompts.text(session,"We are almost there! please enter the subject or summary.");
+            session.beginDialog('askForShortDescription');
         },
         (session, results, next) => {
             session.dialogData.shortDescription = results.response.toString();
-            builder.Prompts.text(session,"Write down the description.");
+            session.beginDialog('askForDescription');
         },
         (session, results, next) => {
             session.dialogData.description = results.response.toString();
-            builder.Prompts.text(session,"Last thing! What is your contact number?");
+            session.beginDialog('askForPhone');
         },
         (session, results, next) => {
             session.dialogData.phone = results.response.toString();
@@ -61,17 +59,65 @@ module.exports = (bot) => {
                 "description": session.dialogData.description,
                 "u_phone": session.dialogData.phone
             };
-            onSucess = (session,number)=>{
+
+            
+
+            onSuccess = (session,number)=>{
                 session.endDialog(`Done! I Have created ${number}`);
             }
             onError = (session) => {
                 session.endDialog('Failed to create Incidnet. Please try again');
             }
-            snow.createSnowTicket(data,session,builder, onSucess, onError);
-
-            
-        }
+            snow.createSnowTicket(data,session, builder, onSuccess, onError);
+        }   
         
+    ]);
+    
+    bot.dialog('/askForCategory', [
+        (session) => {
+            builder.Prompts.text(session,"Pls enter an existing category.");
+            
+        },
+        (session,results) => {
+            session.endDialogWithResult(results);
+        }
+    ]);
+
+    bot.dialog('askForSubCategory', [
+        (session) => {
+            builder.Prompts.text(session,"Okay! lets drill down...What is the subcategory?");
+        },
+        (session,results) => {
+            session.endDialogWithResult(results);
+        }
+    ]);
+
+
+    bot.dialog('askForDescription',  [
+        (session) => {
+            builder.Prompts.text(session,"Write down the description.");
+        },
+        (session,results) => {
+            session.endDialogWithResult(results);
+        }
+    ]);
+
+    bot.dialog('askForShortDescription',  [
+        (session) => {
+            builder.Prompts.text(session,"We are almost there! please enter the subject or summary.");
+        },
+        (session,results) => {
+            session.endDialogWithResult(results);
+        }
+    ]);
+
+    bot.dialog('askForPhone', [
+        (session) => {
+            builder.Prompts.text(session,"Last thing! What is your contact number?");
+        },
+        (session,results) => {
+            session.endDialogWithResult(results);
+        }
     ]);
 };
 

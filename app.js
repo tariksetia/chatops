@@ -2,6 +2,7 @@ var restify = require('restify');
 var builder = require('botbuilder');
 var createTicket = require('./dialogCreateTicket');
 
+
 // Setup Restify Server
 var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {
@@ -30,9 +31,8 @@ intents.matches('openTicket','/createTicket');
 intents.matches('greeting','/greeting');
 
 bot.dialog('/', intents);
-createTicket(bot);
 bot.dialog('/greeting', require('./dialogGreeting'));
-
+createTicket(bot);
 /*
 Below are the dialogs and helper dialogs for creating INC in SNOW
 */
