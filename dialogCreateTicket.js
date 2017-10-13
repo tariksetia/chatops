@@ -1,5 +1,6 @@
 var builder = require('botbuilder');
 var snow = require('./snow')
+var cards = require('./helperCard');
 
 categories = {
     "Microsoft Office": [
@@ -30,7 +31,6 @@ module.exports = (bot) => {
         
         (session) => {
             session.send('Cool! Let us start creating ticket.');
-            session.sendTyping();
             session.beginDialog('/askForCategory');
         },
         (session,results,next) => {
@@ -38,7 +38,7 @@ module.exports = (bot) => {
             session.beginDialog('askForSubCategory');
         },
         (session, results, next) => {
-            session.dialogData.subCategory = results.response.toString().toLowerCase();
+            session.dialogData.subcategory = results.response.toString().toLowerCase();
             session.beginDialog('askForShortDescription');
         },
         (session, results, next) => {
@@ -62,8 +62,10 @@ module.exports = (bot) => {
 
             
 
-            onSuccess = (session,number)=>{
-                session.endDialog(`Done! I Have created ${number}`);
+            onSuccess = (session,incident)=>{
+                var incidentCard = cards.incidentInfoCard(session,incident);
+                session.send(incidentCard);
+                session.endDialog();
             }
             onError = (session) => {
                 session.endDialog('Failed to create Incidnet. Please try again');
@@ -90,7 +92,15 @@ module.exports = (bot) => {
         (session,results) => {
             session.endDialogWithResult(results);
         }
-    ]);
+    ])
+    .customAction({
+        matches: /choice|option/gi,
+        onSelectAction: (session, args, next) => {
+            // Set reminder...
+            session.send("Reminder is set.");
+        }
+    
+    });
 
 
     bot.dialog('askForDescription',  [

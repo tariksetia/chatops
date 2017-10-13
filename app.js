@@ -29,9 +29,14 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 });
 intents.matches('openTicket','/createTicket');
 intents.matches('greeting','/greeting');
+//intents.matches(/\b(tset|tedt|test|test)\b/i, '/test');
+
+
+
 
 bot.dialog('/', intents);
 bot.dialog('/greeting', require('./dialogGreeting'));
+bot.dialog('/test', require('./dialogTest'));
 createTicket(bot);
 /*
 Below are the dialogs and helper dialogs for creating INC in SNOW

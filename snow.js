@@ -12,14 +12,15 @@ module.exports ={
                 Accept: 'application/json',
                 Type: 'application/json',
                 auth: {
-                    'user': 'sherlock.bot',
+                    'user': 'admin',
                     'pass': 'Athos1234!@#$'
                 }
             };
 
             function callback(error, response, body) {
                 if (!error && response.statusCode === 201) {
-                    onSuccess(session, body.result.number);
+                    onSuccess(session, body.result);
+                    console.log(JSON.stringify(body.result));
                     
                 }else {
                     onError(session);
