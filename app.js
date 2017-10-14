@@ -1,6 +1,12 @@
 var restify = require('restify');
 var builder = require('botbuilder');
+
+var luis = require('./luis');
+
 var createTicket = require('./dialogCreateTicket');
+var helpDeskFlow = require('./dialogHelpDesk');
+var helpdesk = require('./helpdesk/all');
+
 
 
 // Setup Restify Server
@@ -30,14 +36,15 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 intents.matches('openTicket','/createTicket');
 intents.matches('greeting','/greeting');
 //intents.matches(/\b(tset|tedt|test|test)\b/i, '/test');
+intents.matches('helpdesk','/helpDesk');
 
-
-
-
+//bot.dialog('/test', require('./dialogTest'));
 bot.dialog('/', intents);
 bot.dialog('/greeting', require('./dialogGreeting'));
-bot.dialog('/test', require('./dialogTest'));
 createTicket(bot);
+helpDeskFlow(bot);
+helpdesk.outlook(bot);
+helpdesk.vpn(bot);
 /*
 Below are the dialogs and helper dialogs for creating INC in SNOW
 */

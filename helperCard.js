@@ -4,6 +4,16 @@ module.exports = {
     incidentInfoCard : (session, incident)=>{
         var card = getIncidnetInfoCard(incident);
         return new builder.Message(session).addAttachment(card);
+    },
+
+    incidentHeroCard : (session, incident) => {
+
+    },
+
+    cardList : (session,heroCards) => {
+        return new builder.Message(session)
+            .attachmentLayout(builder.AttachmentLayout.carousel)
+            .attachments(heroCards);
     }
 };
 
