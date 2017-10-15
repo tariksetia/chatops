@@ -19,8 +19,15 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
 var connector = new builder.ChatConnector();
 
 // Listen for messages from users 
-server.post('/api/messages', connector.listen());
 
+function respond(req, res, next) {
+    res.send('Everyone in IT needs a Dark-Knight');
+    next();
+  }
+
+server.post('/api/messages', connector.listen());
+// Serve a static web page
+server.get(/.*/, respond);
 
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector);
