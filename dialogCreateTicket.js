@@ -63,9 +63,19 @@ module.exports = (bot) => {
             
 
             onSuccess = (session,incident)=>{
-                var incidentCard = cards.incidentInfoCard(session,incident);
-                session.send(incidentCard);
-                session.endDialog();
+                console.log(JSON.stringify(session));
+                var incidentCard;
+                if (session.message.address.channelId == 'cortana'){
+                    session.send("I have created " + incident.number );
+                    session.endDialog();
+                }else{
+                    var incidentCard = cards.incidentInfoCard(session,incident);
+                    session.send(incidentCard);
+                    session.endDialog();
+                }
+                
+
+                
             }
             onError = (session) => {
                 session.endDialog('Failed to create Incidnet. Please try again');

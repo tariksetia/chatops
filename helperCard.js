@@ -7,7 +7,13 @@ module.exports = {
     },
 
     incidentHeroCard : (session, incident) => {
-
+        return new builder.HeroCard(session)
+        .title(incident.number)
+        .subtitle(incident.description)
+        .text('Created: ' + incident.sys_created_on + '\nStatus:    '+states[incident.state]  )
+        .buttons([
+            builder.CardAction.openUrl(session, getUrl(incident.sys_id), 'Get Started')
+        ]);
     },
 
     cardList : (session,heroCards) => {
