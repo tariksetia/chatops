@@ -6,6 +6,11 @@ module.exports = {
         return new builder.Message(session).addAttachment(card);
     },
 
+    incidentStatusCard : (session, incident) => {
+        var card = getIncidentStatusCard(incident);
+        return new builder.Message(session).addAttachment(card)
+    },
+
     incidentHeroCard : (session, incident) => {
         return new builder.HeroCard(session)
         .title(incident.number)
@@ -16,6 +21,12 @@ module.exports = {
         ]);
     },
 
+    dropDownCard: (session, id ,text, choices) => {
+        var card = getDropDownCard(id, text, choices);
+        return new builder.Message(session).addAttachment(card);
+
+    },
+
     cardList : (session,heroCards) => {
         return new builder.Message(session)
             .attachmentLayout(builder.AttachmentLayout.carousel)
@@ -23,6 +34,10 @@ module.exports = {
     }
 };
 
+
+//Helper Card Function
+
+// This funciton returns Adaptive Card, Containing infomartion about the the INX
 var getIncidnetInfoCard = (incident) => {
     var incidentInfoJson = {
         'contentType': 'application/vnd.microsoft.card.adaptive',
@@ -101,6 +116,162 @@ var getIncidnetInfoCard = (incident) => {
     };
     //console.log(JSON.stringify(incidentInfoJson));
     return incidentInfoJson;
+}
+
+var getIncidentStatusCard = (incident) => {
+    return {
+            "contentType" : "application/vnd.microsoft.card.adaptive",
+            "content" : {
+                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                "type": "AdaptiveCard",
+                "version": "1.0",
+                "body": [
+                    {
+                        "type": "ColumnSet",
+                        "columns": [
+                            {
+                                "type": "Column",
+                                "width": "stretch",
+                                "items": [
+                                    {
+                                        "type": "TextBlock",
+                                        "text": incident.number,
+                                        "horizontalAlignment": "left",
+                                        "isSubtle": true
+                                    },
+                                    {
+                                        "type": "TextBlock",
+                                        "text": states[incident.state],
+                                        "horizontalAlignment": "left",
+                                        "spacing": "none",
+                                        "color" : 'accent',
+                                        "size": "large",
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Container",
+                        "separator":"true",
+                        "items": [
+                            {
+                                "type": "TextBlock",
+                                "text": incident.short_description,
+                                "wrap": true
+                            }
+                        ]
+                    },
+                    {
+                        "type": "ColumnSet",
+                        "spacing": "medium",
+                        "separator": true,
+                        "columns": [
+                            {
+                                "type": "Column",
+                                "width": 1,
+                                "items": [
+                                    {
+                                        "type": "TextBlock",
+                                        "text": "Priority",
+                                    },
+                                    {
+                                        "type": "TextBlock",
+                                        "text": "Assigned To",
+                                        "spacing": "small"
+                                    },
+                                    {
+                                        "type": "TextBlock",
+                                        "text": "Created",
+                                        "spacing": "small"
+                                    },
+                                    {
+                                        "type": "TextBlock",
+                                        "text": "Last Updated",
+                                        "spacing": "small"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "Column",
+                                "width": 1,
+                                "items": [
+                                    {
+                                        "type": "TextBlock",
+                                        "text": priority[incident.priority]
+                                    
+                                    },
+                                    {
+                                        "type": "TextBlock",
+                                        "text": getAssignee(incident.assigned_to),
+                                        "spacing": "small"
+                                    },
+                                    {
+                                        "type": "TextBlock",
+                                        "text": incident.sys_created_on,
+                                        "spacing": "small"
+                                    },
+                                    {
+                                        "type": "TextBlock",
+                                        "text": incident.sys_updated_on,
+                                        "spacing": "small"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "actions": [
+                    {
+                        "type": "Action.OpenUrl",
+                        "title": "View",
+                        "url": getUrl(incident.sys_id)
+                    }
+                ]
+            }
+        }
+}
+
+
+var getDropDownCard = ( id, text, choices) => {
+
+    //if = variable name you want to use
+    //Text = Heading for the selection you want to make
+    //Choice = array of {"title": "Red", "value": "1"},
+ 
+    card =  { 
+        'contentType': 'application/vnd.microsoft.card.adaptive',
+        'content':{
+            "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+            "type": "AdaptiveCard",
+            "version": "1.0",
+            "body": [
+                {
+                    "type": "TextBlock",
+                    "text": text
+                },
+                {
+                    "type": "Input.ChoiceSet",
+                    "id": "value",
+                    "style": "compact",
+                    "placeholder": "Pick a category",
+                    "value": "1",
+                    "choices": choices
+                }
+            ],
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Choose",
+                    "data": {
+                        "id": id
+                      }
+                }
+            ]
+        }
+    }
+    return card;
+
 }
 
 

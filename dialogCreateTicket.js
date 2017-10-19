@@ -63,7 +63,7 @@ module.exports = (bot) => {
             
 
             onSuccess = (session,incident)=>{
-                console.log(JSON.stringify(session));
+                //console.log(JSON.stringify(session));
                 var incidentCard;
                 if (session.message.address.channelId == 'cortana'){
                     session.send("I have created " + incident.number );

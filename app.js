@@ -5,8 +5,11 @@ var luis = require('./luis');
 
 var createTicket = require('./dialogCreateTicket');
 var helpDeskFlow = require('./dialogHelpDesk');
+var getIncidentStatus = require('./dialog-get-status-number');
 var helpdesk = require('./helpdesk/all');
-
+var test = require('./dialogTest');
+var kbSearch = require('./dialog-search-base');
+var createIncident = require('./dialog-create-incident');
 
 
 // Setup Restify Server
@@ -32,6 +35,7 @@ server.get(/.*/, respond);
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector);
 
+
 const LuisModelUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/061cfb89-c4af-471e-80bb-662d5d096d38?subscription-key=62ea92a6dad241628c1489c0333d166f&timezoneOffset=0&verbose=true&q=';
 
 // Main dialog with LUIS
@@ -40,19 +44,24 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 .onDefault((session) => {
     session.send('Sorry, I did not understand \'%s\'.', session.message.text);
 });
+
+
 intents.matches('openTicket','/createTicket');
 intents.matches('greeting','/greeting');
-//intents.matches(/\b(tset|tedt|test|test)\b/i, '/test');
 intents.matches('helpdesk','/helpDesk');
+intents.matches('ticketStatus-Number','get-incident-info-number');
+intents.matches(/\b(hubot||hubot|Hubot)\b/i, 'dialog-search-base');
+intents.matches(/\b(tset|tedt|test|test)\b/i, '/test');
 
-//bot.dialog('/test', require('./dialogTest'));
-bot.dialog('/', intents);
-bot.dialog('/greeting', require('./dialogGreeting'));
+
+
+test(bot);
 createTicket(bot);
 helpDeskFlow(bot);
+getIncidentStatus(bot);
+kbSearch(bot);
+createIncident(bot);
 helpdesk.outlook(bot);
 helpdesk.vpn(bot);
-/*
-Below are the dialogs and helper dialogs for creating INC in SNOW
-*/
-
+bot.dialog('/', intents);
+bot.dialog('/greeting', require('./dialogGreeting'));
