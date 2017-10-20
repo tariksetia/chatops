@@ -23,8 +23,8 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
 var connector = new builder.ChatConnector({
     appId: '781d60e1-5151-407f-b5d6-d0c132967a5c',
     appPassword: 'Y2Ggc4jrA3H1qKTxmO6VQaw'
-    // appID: '',
-    // appPassword: ''
+    //  appID: '',
+    //  appPassword: ''
 });
 
 // Listen for messages from users 

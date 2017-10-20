@@ -105,7 +105,7 @@ module.exports = (bot) => {
             } else {
                 session.send(session, 'So I am now raising a request for replacement of PC with the following details.');
 
-                builder.Prompts.choice(session, '> Reason for replacement: ' + '**' + session.dialogData.MinReqReason  +'**'+ '\n The location selected is: ' +'**' + session.dialogData.Location +'**'+ 
+                builder.Prompts.choice(session, 'Reason for replacement: ' + '**' + session.dialogData.MinReqReason  +'**'+ '\n The location selected is: ' +'**' + session.dialogData.Location +'**'+ 
                 '.\n The PC applied for is: \'' +'**'+   session.dialogData.systemType +'**'+  '.\n Am I correct?', isThatCorrect, buttonStyle);
                                
             }
