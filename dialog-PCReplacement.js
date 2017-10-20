@@ -37,7 +37,7 @@ module.exports = (bot) => {
                 session.endDialog('No problem. So, how may I help you?')
                 session.send("I can create an incident for Applications, Hardware and Software, Read out the FAQ's or help you get a replacement for your Corporate PC.")
             } else {
-                builder.Prompts.choice(session, "Do you have approval from your direct supervisor or hardline manager", "Yes|No",buttonStyle);
+                builder.Prompts.choice(session, "Do you have approval from your direct supervisor or hardline manager?", "Yes|No",buttonStyle);
             }
         },
         function (session, results) {
@@ -60,19 +60,19 @@ module.exports = (bot) => {
             
             if (session.dialogData.systemType == "Laptop" && session.dialogData.keyword == "India") {
                 
-                builder.Prompts.choice(session,"In order to proceed, please select a reason for replacement", MinReq);
+                builder.Prompts.choice(session,"In order to proceed, please select a reason for replacement. ", MinReq);
                 // At the moment the policy is the same. If there are more changes it makes sense to bifurcate
                 // here at the code
                 return;
                 
             } else if(session.dialogData.systemType == "Laptop" && session.dialogData.keyword == "India") {
-                builder.Prompts.choice(session,"In order to proceed, please select a reason for replacement", MinReq);
+                builder.Prompts.choice(session,"In order to proceed, please select a reason for replacement. ", MinReq);
                 return;
             } else if(session.dialogData.systemType == "Desktop" && session.dialogData.keyword == "North America") {
-                builder.Prompts.choice(session,"In order to proceed, please select a reason for replacement", MinReq);
+                builder.Prompts.choice(session,"In order to proceed, please select a reason for replacement. ", MinReq);
                 return;
             }else  
-            builder.Prompts.choice(session,"In order to proceed, please select a reason for replacement", MinReq);
+            builder.Prompts.choice(session,"In order to proceed, please select a reason for replacement. ", MinReq);
             return;
             
         },
@@ -80,8 +80,8 @@ module.exports = (bot) => {
             session.dialogData.MinReqReason = results.response.entity.toString();
             var minReqSatisifiedBool = session.dialogData.MinReqReason;
             if (minReqSatisifiedBool == "None of the above"){
-                session.send("Sorry. You cannot apply for a new PC but you could still try to get a \"Loaner\" PC");
-                session.send("Please have a discussion with your manager first and initiate the process.");
+                session.send("Sorry. You cannot apply for a new PC but you could still try to get a \"Loaner\" PC. ");
+                session.send("Please have a discussion with your manager first and initiate the process. ");
                 session.endDialog("Goodbye!");
                 
            } else{
@@ -103,10 +103,10 @@ module.exports = (bot) => {
                 session.endDialog('No problem. Is there anything else I can assist you with?')
                 session.send("I can create an incident for Applications, Hardware and Software, Read out the FAQ's or help you get a replacement for your Corporate PC.")
             } else {
-                session.send(session, 'So I am now raising a request for replacement of PC with the following details.');
+                session.send("So I am now raising a request for replacement of PC with the following details.");
 
-                builder.Prompts.choice(session, 'Reason for replacement: ' + '**' + session.dialogData.MinReqReason  +'**'+ '\n The location selected is: ' +'**' + session.dialogData.Location +'**'+ 
-                '.\n The PC applied for is: \'' +'**'+   session.dialogData.systemType +'**'+  '.\n Am I correct?', isThatCorrect, buttonStyle);
+                builder.Prompts.choice(session, "Reason for replacement: " + "**" + session.dialogData.MinReqReason  +"**"+ "\n The location selected is: " +"**"+ session.dialogData.Location +"**"+ 
+                ".\n The PC applied for is: " +"**"+   session.dialogData.systemType +"**"+  ".\n Am I correct?", isThatCorrect, buttonStyle);
                                
             }
         },
@@ -114,7 +114,7 @@ module.exports = (bot) => {
         function (session, results) {
             var confirmation = results.response.entity.toString();
             if (confirmation === 'No') {
-                session.endDialog('No problem. We can start with the process again. Say \"Hello\" to restart the workflow');
+                session.endDialog('No problem. We can start with the process again. Say \"Hello\" to restart the workflow.');
             }
             else if (confirmation === 'Yes') 
 
