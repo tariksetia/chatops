@@ -10,6 +10,7 @@ var helpdesk = require('./helpdesk/all');
 var test = require('./dialogTest');
 var kbSearch = require('./dialog-search-base');
 var createIncident = require('./dialog-create-incident');
+var createIncident = require('./dialog-PCReplacement');
 
 
 // Setup Restify Server
@@ -50,6 +51,7 @@ intents.matches('openTicket','/createTicket');
 intents.matches('greeting','/greeting');
 intents.matches('helpdesk','/helpDesk');
 intents.matches('ticketStatus-Number','get-incident-info-number');
+intents.matches('laptopReplacement','/PCReplacement');
 intents.matches(/\b(hubot||hubot|Hubot)\b/i, 'dialog-search-base');
 intents.matches(/\b(tset|tedt|test|test)\b/i, '/test');
 
