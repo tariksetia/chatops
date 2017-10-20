@@ -23,7 +23,7 @@ module.exports = (bot) => {
 
     bot.dialog('askForIssue', [
         (session) => {
-            builder.Prompts.text(session,"What are you facing issues with?")
+            builder.Prompts.text(session,"What is the issue that you are facing?")
         },
         (session,results,next) => {
             var intents;
@@ -50,10 +50,11 @@ module.exports = (bot) => {
                 entity = session.dialogData.identifiedApps.shift();
                 console.log(entity.entity);
                 if (apps.indexOf(entity.entity.toLowerCase()) > -1) {
-                    session.send("Lets start discussing " + entity.entity);
+                    session.send("Let's discuss " + entity.entity);
                     session.beginDialog('dialog-' + entity.entity);
                 }else {
-                    session.send("I could not find anything for " + entity.entity);
+                    session.send("Sorry, I could not find anything for " + entity.entity);
+                    session.send("Please try again! ");
                 }
             }
         },

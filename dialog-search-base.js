@@ -18,11 +18,11 @@ module.exports = (bot) => {
             client.search('kbase1', {search: results.response, top: 10}, function(err, results, raw){
                 
                 if (err) {
-                    session.send("Something went worng while searching knowledgebase. :(");
+                    session.send("Sorry! Something went wrong while searching the KB. The issue has been reported to my developers. Please try again!");
                     next({kbresult:false});
                 }
                 if (raw.value.length == 0){
-                    session.send("I couldn't find anything in the knowledge base");
+                    session.send("I couldn't find anything in the KB");
                     next({kbresult:false});
                 }else{
                     var kbCards = raw.value.map((doc)=>{

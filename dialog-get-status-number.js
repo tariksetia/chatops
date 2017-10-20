@@ -20,12 +20,12 @@ module.exports = (bot) => {
                 }
 
                 onError = (session) => {
-                    session.endDialog('Could not get incident information at the moment. Please try again later.');
+                    session.endDialog('Sorry! I failed to retrieve the incident details. The issue has been reported to my developers. Please try again!');
                 }
 
                 snow.getSnowTicket(session, number.entity, onSuccess, onError);
             }else{
-                builder.Prompts.text(session,"I couldn't recognize any Incident Number. Please enter one.")
+                builder.Prompts.text(session,"Unfortunately, I couldn't recognize the Incident Number. Please try again!")
             }
         },
         (session,results,next) => {
@@ -44,7 +44,7 @@ module.exports = (bot) => {
 
 
             onError = (session) => {
-                session.endDialog('Could not get incident information at the moment. Please try again later.');
+                session.endDialog('Sorry! I failed to retrieve the incident details. The issue has been reported to my developers. Please try again!');
             }
             snow.getSnowTicket(session, number,onSuccess, onError);
 

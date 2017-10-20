@@ -11,7 +11,7 @@ module.exports = (bot) => {
             if (session.dialogData.description) {
                 next()
             }else{
-                builder.Prompts.text(session,"Please enter the description of the issue.")
+                builder.Prompts.text(session,"Please enter a description for the issue.")
             }
         },
         
@@ -34,7 +34,7 @@ module.exports = (bot) => {
                                 
             }
             onError = (session) => {
-                session.endDialog('Failed to create Incidnet. Please try again');
+                session.endDialog('Sorry! I failed to create an incident. The issue has been reported to my developers. Please try again!');
             }
 
             snow.createSnowTicket({

@@ -30,7 +30,7 @@ module.exports = (bot) => {
     bot.dialog('/createTicket', [
         
         (session) => {
-            session.send('Cool! Let us start creating ticket.');
+            session.send('Okay! Let us proceed to create a ticket.');
             session.beginDialog('/askForCategory');
         },
         (session,results,next) => {
@@ -78,7 +78,7 @@ module.exports = (bot) => {
                 
             }
             onError = (session) => {
-                session.endDialog('Failed to create Incidnet. Please try again');
+                session.endDialog('Sorry! I failed to create an incident. The issue has been reported to my developers. Please try again!');
             }
             snow.createSnowTicket(data,session, builder, onSuccess, onError);
         }   
@@ -87,7 +87,7 @@ module.exports = (bot) => {
     
     bot.dialog('/askForCategory', [
         (session) => {
-            builder.Prompts.text(session,"Pls enter an existing category.");
+            builder.Prompts.text(session,"Please enter an existing category.");
             
         },
         (session,results) => {
@@ -97,7 +97,7 @@ module.exports = (bot) => {
 
     bot.dialog('askForSubCategory', [
         (session) => {
-            builder.Prompts.text(session,"Okay! lets drill down...What is the subcategory?");
+            builder.Prompts.text(session,"Please specify a sub-category.");
         },
         (session,results) => {
             session.endDialogWithResult(results);
@@ -115,7 +115,7 @@ module.exports = (bot) => {
 
     bot.dialog('askForDescription',  [
         (session) => {
-            builder.Prompts.text(session,"Write down the description.");
+            builder.Prompts.text(session,"Could you please describe the issue for the ticket assignee?");
         },
         (session,results) => {
             session.endDialogWithResult(results);
@@ -124,7 +124,7 @@ module.exports = (bot) => {
 
     bot.dialog('askForShortDescription',  [
         (session) => {
-            builder.Prompts.text(session,"We are almost there! please enter the subject or summary.");
+            builder.Prompts.text(session,"We are almost there! Please enter the subject or a quick summary.");
         },
         (session,results) => {
             session.endDialogWithResult(results);
@@ -133,7 +133,7 @@ module.exports = (bot) => {
 
     bot.dialog('askForPhone', [
         (session) => {
-            builder.Prompts.text(session,"Last thing! What is your contact number?");
+            builder.Prompts.text(session,"Finally, what is your contact number?");
         },
         (session,results) => {
             session.endDialogWithResult(results);

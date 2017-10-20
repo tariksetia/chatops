@@ -23,6 +23,8 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
 var connector = new builder.ChatConnector({
     appId: '781d60e1-5151-407f-b5d6-d0c132967a5c',
     appPassword: 'Y2Ggc4jrA3H1qKTxmO6VQaw'
+    // appID: '',
+    // appPassword: ''
 });
 
 // Listen for messages from users 
@@ -46,7 +48,7 @@ const LuisModelUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 .onDefault((session) => {
-    session.send('Sorry, I did not understand \'%s\'.', session.message.text);
+    session.send('**Sorry!** I did not understand \'%s\'.', session.message.text);
 });
 
 
