@@ -10,7 +10,7 @@ var helpdesk = require('./helpdesk/all');
 var test = require('./dialogTest');
 var kbSearch = require('./dialog-search-base');
 var createIncident = require('./dialog-create-incident');
-var createIncident = require('./dialog-PCReplacement');
+var laptopReplacement = require('./dialog-PCReplacement');
 
 
 // Setup Restify Server
@@ -63,6 +63,7 @@ helpDeskFlow(bot);
 getIncidentStatus(bot);
 kbSearch(bot);
 createIncident(bot);
+laptopReplacement(bot);
 helpdesk.outlook(bot);
 helpdesk.vpn(bot);
 bot.dialog('/', intents);

@@ -1,6 +1,6 @@
 var builder = require('botbuilder');
 var snow = require('./snow');
-
+var cards = require('./helperCard');
 
 module.exports = (bot) => {
     bot.dialog('dialog-create-incident',[
