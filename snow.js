@@ -31,7 +31,7 @@ module.exports ={
             request(options, callback);
     },
     getSnowTicket : (session, number, onSucess, onError) => {
-        var urlString = 'https://dev10994.service-now.com/api/now/v2/table/incident?sysparm_limit=1&number='+number;
+        var urlString = 'https://dev12965.service-now.com/api/now/v2/table/incident?sysparm_limit=1&number='+number;
         var options = {
             url: urlString,
             method: 'GET',
@@ -40,7 +40,7 @@ module.exports ={
             Type: 'application/json',
             auth: {
                 'user': 'admin',
-                'pass': 'Athos1234!@#$'
+                'pass': 'B2jHFSH3gVC9'
             }
         };
 
