@@ -3,7 +3,7 @@ var request = require('request');
 module.exports ={
 
     createSnowTicket:(data,session, builder, onSuccess, onError) => {
-        var urlString = 'https://dev10994.service-now.com/api/now/v1/table/incident';
+        var urlString = 'https://dev12965.service-now.com/api/now/v1/table/incident';
             var options = {
                 url: urlString,
                 method: 'POST',
@@ -13,7 +13,7 @@ module.exports ={
                 Type: 'application/json',
                 auth: {
                     'user': 'admin',
-                    'pass': 'Athos1234!@#$'
+                    'pass': 'B2jHFSH3gVC9'
                 }
             };
 
