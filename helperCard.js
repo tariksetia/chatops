@@ -291,7 +291,7 @@ var getAssignee = (assignee) => {
 
 }
 var getUrl = (sys_id) => {
-    return "https://dev10994.service-now.com/nav_to.do?uri=%2Fincident.do%3Fsys_id%" + sys_id;
+    return "https://dev12965.service-now.com/nav_to.do?uri=%2Fincident.do%3Fsys_id%" + sys_id;
 };
 
 var states = {
