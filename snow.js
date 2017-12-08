@@ -40,7 +40,7 @@ module.exports ={
             Type: 'application/json',
             auth: {
                 'user': 'admin',
-                'pass': 'B2jHFSH3gVC9'
+                'pass': 'xa75LBhW6wVg'
             }
         };
 
