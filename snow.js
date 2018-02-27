@@ -13,7 +13,7 @@ module.exports ={
                 Type: 'application/json',
                 auth: {
                     'user': 'admin',
-                    'pass': 'ghBSKDy4Y3wr'
+                    'pass': '4xpmeUPpR5KV'
                 }
             };
 
@@ -40,7 +40,7 @@ module.exports ={
             Type: 'application/json',
             auth: {
                 'user': 'admin',
-                'pass': 'ghBSKDy4Y3wr'
+                'pass': '4xpmeUPpR5KV'
             }
         };
 
