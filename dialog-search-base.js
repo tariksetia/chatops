@@ -30,7 +30,8 @@ module.exports = (bot) => {
                         .title(doc.title)
                         .text(doc.description)
                         .buttons([
-                            builder.CardAction.openUrl(session, 'https://wordforge3.ps.net/knowledgebase/manage/article/article_id/' + doc.id, 'View')
+                            //builder.CardAction.openUrl(session, 'https://wordforge3.ps.net/knowledgebase/manage/article/article_id/' + doc.id, 'View')
+                            builder.CardAction.openUrl(session, 'https://wordforge.nttdataservices.com/knowledgebase/manage/article/article_id/' + doc.id, 'View')
                         ]);
                     });
                     
