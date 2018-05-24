@@ -3,7 +3,7 @@ var request = require('request');
 module.exports ={
 
     createSnowTicket:(data,session, builder, onSuccess, onError) => {
-        var urlString = 'https://dev56221.service-now.com/api/now/v1/table/incident';
+        var urlString = 'https://dev46006.service-now.com/api/now/v1/table/incident';
             var options = {
                 url: urlString,
                 method: 'POST',
@@ -13,7 +13,7 @@ module.exports ={
                 Type: 'application/json',
                 auth: {
                     'user': 'admin',
-                    'pass': 'iM9EzJ3QSiwg'
+                    'pass': 'm4p4CyPyUZBo'
                 }
             };
 
@@ -31,7 +31,7 @@ module.exports ={
             request(options, callback);
     },
     getSnowTicket : (session, number, onSucess, onError) => {
-        var urlString = 'https://dev56221.service-now.com/api/now/v2/table/incident?sysparm_limit=1&number='+number;
+        var urlString = 'https://dev46006.service-now.com/api/now/v2/table/incident?sysparm_limit=1&number='+number;
         var options = {
             url: urlString,
             method: 'GET',
@@ -40,7 +40,7 @@ module.exports ={
             Type: 'application/json',
             auth: {
                 'user': 'admin',
-                'pass': 'iM9EzJ3QSiwg'
+                'pass': 'm4p4CyPyUZBo'
             }
         };
 
