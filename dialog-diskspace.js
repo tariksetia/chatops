@@ -28,7 +28,7 @@ MinReq = [
             "None of the above"
        ]
 module.exports = (bot) => {
-    bot.dialog('/diskSpace',[
+    bot.dialog('/diskspace',[
         (session) => {
             builder.Prompts.choice(session, 'I can see that you are having issues with disk space', isThatCorrect, buttonStyle, "Invalid Choice");
         },
