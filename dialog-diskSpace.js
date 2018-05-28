@@ -28,9 +28,9 @@ MinReq = [
             "None of the above"
        ]
 module.exports = (bot) => {
-    bot.dialog('/PCReplacement',[
+    bot.dialog('/diskSpace',[
         (session) => {
-            builder.Prompts.choice(session, 'I understand that you would like to get a replacement for your current Corporate PC. Is that correct?', isThatCorrect, buttonStyle, "Invalid Choice");
+            builder.Prompts.choice(session, 'I can see that you are having issues with disk space', isThatCorrect, buttonStyle, "Invalid Choice");
         },
         function (session, results) {
             if (results.response.entity.toString() === 'No') {
