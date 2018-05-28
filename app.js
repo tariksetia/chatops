@@ -11,7 +11,7 @@ var test = require('./dialogTest');
 var kbSearch = require('./dialog-search-base');
 var createIncident = require('./dialog-create-incident');
 var laptopReplacement = require('./dialog-PCReplacement');
-var diskSpace = require('./dialog-diskSpace');
+var diskSpace = require('./dialog-diskspace');
 
 
 // Setup Restify Server
