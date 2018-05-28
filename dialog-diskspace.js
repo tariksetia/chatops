@@ -46,11 +46,11 @@ module.exports = (bot) => {
                 session.send('Please initiate a conversation with your supervisor & get an approval first.');
                 session.endDialog('Goodbye!');
             } else {
-                builder.Prompts.choice(session, 'Please click on the icon to continue', Locations, buttonStyle)
+                session.send('Please click on the icon to continue');
                 var msg = new builder.Message(session)
            .attachments([{
                contentType: "image/jpg",
-               contentUrl: "https://github.com/mailforsachin/BOTsom/blob/master/M6jMgLHr_400x400.jpg?raw=true"
+               contentUrl: "https://raw.githubusercontent.com/mailforsachin/BOTsom/master/M6jMgLHr_400x400.jpg"
            }]);
            session.send(msg);
             }
