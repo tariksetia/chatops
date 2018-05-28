@@ -11,6 +11,7 @@ var test = require('./dialogTest');
 var kbSearch = require('./dialog-search-base');
 var createIncident = require('./dialog-create-incident');
 var laptopReplacement = require('./dialog-PCReplacement');
+var diskSpace = require('./dialog-diskSpace');
 
 
 // Setup Restify Server
@@ -57,6 +58,7 @@ intents.matches('greeting','/greeting');
 intents.matches('helpdesk','/helpDesk');
 intents.matches('ticketStatus-Number','get-incident-info-number');
 intents.matches('laptopReplacement','/PCReplacement');
+intents.matches('diskSpace','/diskSpace');
 intents.matches(/\b(hubot||hubot|Hubot)\b/i, 'dialog-search-base');
 intents.matches(/\b(tset|tedt|test|test)\b/i, '/test');
 
@@ -69,6 +71,7 @@ getIncidentStatus(bot);
 kbSearch(bot);
 createIncident(bot);
 laptopReplacement(bot);
+diskSpace(bot);
 helpdesk.outlook(bot);
 helpdesk.vpn(bot);
 bot.dialog('/', intents);
