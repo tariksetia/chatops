@@ -37,7 +37,7 @@ module.exports = (bot) => {
                 session.endDialog('No problem. So, how may I help you?')
                 session.send("I can create an incident for Applications, Hardware and Software, Read out the FAQ's or help you get a replacement for your Corporate PC.")
             } else {
-                builder.Prompts.choice(session, "Do you have approval from your direct supervisor or hardline manager?", "Yes|No",buttonStyle);
+                builder.Prompts.choice(session, "Would you like to correct the problem?", "Yes|No",buttonStyle);
             }
         },
         function (session, results) {
@@ -46,7 +46,13 @@ module.exports = (bot) => {
                 session.send('Please initiate a conversation with your supervisor & get an approval first.');
                 session.endDialog('Goodbye!');
             } else {
-                builder.Prompts.choice(session, 'Where are you located?', Locations, buttonStyle)
+                builder.Prompts.choice(session, 'Please click on the icon to continue', Locations, buttonStyle)
+                var msg = new builder.Message(session)
+           .attachments([{
+               contentType: "image/jpg",
+               contentUrl: "https://raw.githubusercontent.com/mailforsachin/BOTsom/master/1.jpg"
+           }]);
+           session.send(msg);
             }
         },
         function (session, results) {
