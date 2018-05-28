@@ -30,14 +30,14 @@ MinReq = [
 module.exports = (bot) => {
     bot.dialog('/diskspace',[
         (session) => {
-            builder.Prompts.choice(session, 'I can see that you are having issues with disk space', isThatCorrect, buttonStyle, "Invalid Choice");
+            builder.Prompts.choice(session, 'I can see that you are having issues with disk space. Is that correct?', isThatCorrect, buttonStyle, "Invalid Choice");
         },
         function (session, results) {
             if (results.response.entity.toString() === 'No') {
                 session.endDialog('No problem. So, how may I help you?')
                 session.send("I can create an incident for Applications, Hardware and Software, Read out the FAQ's or help you get a replacement for your Corporate PC.")
             } else {
-                builder.Prompts.choice(session, "Would you like to correct the problem?", "Yes|No",buttonStyle);
+                builder.Prompts.choice(session, "Would you like to correct the problem now?", "Yes|No",buttonStyle);
             }
         },
         function (session, results) {
@@ -50,7 +50,7 @@ module.exports = (bot) => {
                 var msg = new builder.Message(session)
            .attachments([{
                contentType: "image/jpg",
-               contentUrl: "https://raw.githubusercontent.com/mailforsachin/BOTsom/master/1.jpg"
+               contentUrl: "https://github.com/mailforsachin/BOTsom/blob/master/M6jMgLHr_400x400.jpg?raw=true"
            }]);
            session.send(msg);
             }
