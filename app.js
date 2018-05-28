@@ -58,7 +58,7 @@ intents.matches('greeting','/greeting');
 intents.matches('helpdesk','/helpDesk');
 intents.matches('ticketStatus-Number','get-incident-info-number');
 intents.matches('laptopReplacement','/PCReplacement');
-intents.matches('diskSpace','/diskSpace');
+intents.matches('diskSpace','/diskspace');
 intents.matches(/\b(hubot||hubot|Hubot)\b/i, 'dialog-search-base');
 intents.matches(/\b(tset|tedt|test|test)\b/i, '/test');
 
