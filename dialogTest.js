@@ -28,13 +28,13 @@ inc = {
     "resolved_by": "",
     "sys_updated_by": "admin",
     "opened_by": {
-        "link": "https://dev10994.service-now.com/api/now/v2/table/sys_user/6816f79cc0a8016401c5a33be04be441",
+        "link": "https://dev70683.service-now.com/api/now/v2/table/sys_user/6816f79cc0a8016401c5a33be04be441",
         "value": "6816f79cc0a8016401c5a33be04be441"
     },
     "user_input": "",
     "sys_created_on": "2017-10-17 08:49:56",
     "sys_domain": {
-        "link": "https://dev10994.service-now.com/api/now/v2/table/sys_user_group/global",
+        "link": "https://dev70683.service-now.com/api/now/v2/table/sys_user_group/global",
         "value": "global"
     },
     "state": "1",
@@ -59,7 +59,7 @@ inc = {
     "group_list": "",
     "work_end": "",
     "caller_id": {
-        "link": "https://dev10994.service-now.com/api/now/v2/table/sys_user/Hi",
+        "link": "https://dev70683.service-now.com/api/now/v2/table/sys_user/Hi",
         "value": "Hi"
     },
     "resolved_at": "",
